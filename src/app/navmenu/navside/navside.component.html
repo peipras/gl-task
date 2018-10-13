@@ -1,0 +1,10 @@
+<div class="nav flex-column flex-nowrap text-truncate navbar-light bg-white position-fixed pt-2 vh-100" style="width: 270px;">
+    <a class="nav-link ml-2" href="#" (click)="onClose()"><i class="fas fa-times"></i></a>  
+  <ul class="list-group">
+        <li class="nav-item" *ngFor="let navItem of navItems" (click)="toggleSubMenu(navItem)">
+            <a class="nav-link align-items-center" href="#">
+            <img src="/assets/images/{{navItem.icon}}" class="mr-3"/>
+            <span>{{navItem.name}}</span></a>
+        </li>
+      </ul>
+</div>
