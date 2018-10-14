@@ -13,7 +13,6 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private suscriptionState: Subscription;
   private istoggle = false;
-  private prevActiveItem = false;
   navItems: any;
   selectedItem = {};
 
@@ -28,9 +27,9 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     {
       this.istoggle = state[0];
       if(state[2]!== null){
-        this.prevActiveItem = this.selectedItem[state[2].id];
+        const isPrevActiveItem = this.selectedItem[state[2].id];
         this.selectedItem = {};
-        this.selectedItem[state[2].id] = !this.prevActiveItem;
+        this.selectedItem[state[2].id] = !isPrevActiveItem;
       }
     })
   }
@@ -43,18 +42,19 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     this.suscriptionState.unsubscribe();
   }
   toggleSubMenu(item: NavMenu) {
-    this.prevActiveItem = this.selectedItem[item.id];
+    const isPrevActiveItem = this.selectedItem[item.id];
     this.istoggle = !this.istoggle;
+    this.navigationService.menuState = [true, true, item];
     this.navigationService.setSelectedMenu(item);
     this.selectedItem = {};
-    this.selectedItem[item.id] = !this.prevActiveItem;
+    this.selectedItem[item.id] = !isPrevActiveItem;
     this.closed.emit([true, this.selectedItem[item.id]]);
+ 
   }
 
   onClose() {
     this.closed.emit([false, false]);
-    this.selectedItem = {};
-    this.prevActiveItem = false;
     this.navigationService.menuState = [false, false, null];
+    this.selectedItem = {};
   }
 }
