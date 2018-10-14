@@ -14,7 +14,7 @@ import { navigationAnimation } from '../animations';
 export class SideMenuComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private suscriptionState: Subscription;
-  private istoggle = false;
+  istoggle = false;
   navItems: any;
   selectedItem = {};
 
