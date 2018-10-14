@@ -32,11 +32,11 @@ export class NavigationService {
   private _menuState: [boolean, boolean, NavMenu] = [false, false, null];
   private curretMenuSubject = new Subject<NavMain>();
   private selectedMenuSubject = new Subject<NavMenu>();
-  private menuStateubject = new Subject<[boolean, boolean, NavMenu]>();
+  private menuStateSubject = new Subject<[boolean, boolean, NavMenu]>();
 
   curretMenuSubject$ = this.curretMenuSubject.asObservable();
   selectedMenuId$ = this.selectedMenuSubject.asObservable();
-  menuStateubject$ = this.menuStateubject.asObservable();
+  menuStateSubject$ = this.menuStateSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -57,14 +57,12 @@ export class NavigationService {
     this.selectedMenuSubject.next(item);
   }
 
-
-
   get menuState(): [boolean, boolean, NavMenu] {
-        return this._menuState;
+    return this._menuState;
   }
 
   set menuState(state: [boolean, boolean, NavMenu]) {
-        this._menuState = state;
-        this.menuStateubject.next(state);
+    this._menuState = state;
+    this.menuStateSubject.next(state);
   }
 }

@@ -25,7 +25,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       this.menuItems = data.menu.filter(x => data.main.includes(x.id));
     });
 
-    this.suscriptionState = this.navigationService.menuStateubject$.subscribe((state) => {
+    this.suscriptionState = this.navigationService.menuStateSubject$.subscribe((state) => {
       this.isMenuItemToggle = state[0];
       if (state[2] !== null) {
         const isPrevActiveItem = this.selectedItem[state[2].id];

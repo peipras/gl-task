@@ -24,7 +24,7 @@ export class TopMenuComponent implements OnInit, OnDestroy {
       this.navItems = data.menu.filter(x => data.main.includes(x.id));
     });
 
-    this.suscriptionState = this.navigationService.menuStateubject$.subscribe((state) => {
+    this.suscriptionState = this.navigationService.menuStateSubject$.subscribe((state) => {
       this.isToggle = state[0];
       if (state[2] !== null) {
         const isPrevActiveItem = this.selectedItem[state[2].id];
