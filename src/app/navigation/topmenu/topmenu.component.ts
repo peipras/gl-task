@@ -10,7 +10,7 @@ import { Subscription, Observable } from 'rxjs';
 export class TopMenuComponent implements OnInit, OnDestroy {
   navItems: any;
   isToggle = false;
-  selectedIdtem = {};
+  selectedItem = {};
 
   @Output() toggled = new EventEmitter<[boolean, boolean]>();
   private suscription: Subscription;
@@ -27,15 +27,19 @@ export class TopMenuComponent implements OnInit, OnDestroy {
     this.suscriptionState = this.navigationService.menuStateubject$.subscribe((state) => {
       this.isToggle = state[0];
       if (state[2] !== null) {
-        const isPrevActiveItem = this.selectedIdtem[state[2].id];
-        this.selectedIdtem = {};
-        this.selectedIdtem[state[2].id] = !isPrevActiveItem;
+        const isPrevActiveItem = this.selectedItem[state[2].id];
+        this.changeState(state[2], isPrevActiveItem);
       }
 
       if (!state[1]) {
-        this.selectedIdtem = {};
+        this.selectedItem = {};
       }
     });
+  }
+
+  private changeState(item: NavMenu, state: boolean) {
+    this.selectedItem = {};
+    this.selectedItem[item.id] = !state;
   }
 
   ngOnInit() {
@@ -51,16 +55,15 @@ export class TopMenuComponent implements OnInit, OnDestroy {
     this.isToggle = !this.isToggle;
     this.toggled.emit([this.isToggle, false]);
     this.navigationService.menuState = [this.isToggle, false, null];
-    this.selectedIdtem = {};
+    this.selectedItem = {};
   }
 
   onClick(item: NavMenu) {
-    const isPrevActiveItem = this.selectedIdtem[item.id];
+    const isPrevActiveItem = this.selectedItem[item.id];
     this.isToggle = true;
     this.navigationService.menuState = [true, true, item];
-    this.selectedIdtem = {};
-    this.selectedIdtem[item.id] = !isPrevActiveItem;
+    this.changeState(item, isPrevActiveItem);
     this.navigationService.setSelectedMenu(item);
-    this.toggled.emit([true, this.selectedIdtem[item.id]]);
+    this.toggled.emit([true, this.selectedItem[item.id]]);
   }
 }

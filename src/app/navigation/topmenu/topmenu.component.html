@@ -4,7 +4,7 @@
           <i class="fa fa-bars fa-lg"></i>
       </a>
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" *ngFor="let navItem of navItems" (click) = "onClick(navItem)" [ngClass]="{'active': selectedIdtem[navItem.id]}">
+      <li class="nav-item" *ngFor="let navItem of navItems" (click) = "onClick(navItem)" [ngClass]="{'active': selectedItem[navItem.id]}">
         <a class="nav-link" href="#">{{navItem.name}}</a>
       </li>
     </ul>
