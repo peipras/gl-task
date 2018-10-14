@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-interface NavSub {
+export interface NavSub {
   id: number;
   name: string;
   title: string;
