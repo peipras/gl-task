@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavsideComponent } from './navside.component';
+import { MenuSecondaryComponent } from './menusecondary.component';
 
-describe('NavsideComponent', () => {
-  let component: NavsideComponent;
-  let fixture: ComponentFixture<NavsideComponent>;
+describe('MenuSecondryComponent', () => {
+  let component: MenuSecondaryComponent;
+  let fixture: ComponentFixture<MenuSecondaryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavsideComponent ]
+      declarations: [ MenuSecondaryComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavsideComponent);
+    fixture = TestBed.createComponent(MenuSecondaryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

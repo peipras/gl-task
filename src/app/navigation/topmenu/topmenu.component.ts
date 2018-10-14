@@ -1,13 +1,13 @@
 import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
-import { NavMenuService, NavMenu } from '../nav-menu.service';
+import { NavigationService, NavMenu } from '../navigation.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-navtop',
-  templateUrl: './navtop.component.html',
-  styleUrls: ['./navtop.component.scss']
+  selector: 'app-topmenu',
+  templateUrl: './topmenu.component.html',
+  styleUrls: ['./topmenu.component.scss']
 })
-export class NavtopComponent implements OnInit, OnDestroy {
+export class TopMenuComponent implements OnInit, OnDestroy {
   navItems: any;
   isToggle = false;
   selectedIdtem = {};
@@ -16,16 +16,16 @@ export class NavtopComponent implements OnInit, OnDestroy {
   private suscription: Subscription;
 
   constructor(
-    private navMenuService: NavMenuService,
+    private navigationService: NavigationService,
 
   ) {
-    this.suscription = this.navMenuService.curretMenuSubject$.subscribe((data) => {
+    this.suscription = this.navigationService.curretMenuSubject$.subscribe((data) => {
       this.navItems = data.menu.filter(x => data.main.includes(x.id));
     });
   }
 
   ngOnInit() {
-    this.navMenuService.getMainMenu('./assets/data/menu.json').subscribe();
+    this.navigationService.getMainMenu('./assets/data/menu.json').subscribe();
   }
 
   ngOnDestroy (): void {
@@ -42,7 +42,7 @@ export class NavtopComponent implements OnInit, OnDestroy {
     this.toggled.emit([true, true]);
     this.selectedIdtem = {};
     this.selectedIdtem[item.id] = true;
-    this.navMenuService.setSelectedMenu(item);
+    this.navigationService.setSelectedMenu(item);
 
   }
 }

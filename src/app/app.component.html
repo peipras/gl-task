@@ -4,15 +4,15 @@
             <!-- spacer col -->
         </div>
         <div class="col px-3">
-            <app-navtop (toggled)="onToggled($event)"></app-navtop>
+            <app-topmenu (toggled)="onToggled($event)"></app-topmenu>
         </div>
     </div>
 </div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-0 collapse show sidebar text-white">
-            <app-navside (closed)="onClosed($event)" [hidden]="!isNavSideOn"></app-navside>
-            <app-navsub [hidden]="!isNavSubOn"></app-navsub>
+            <app-sidemenu (closed)="onClosed($event)" [hidden]="!isNavSideOn"></app-sidemenu>
+            <app-menusecondary [hidden]="!isNavSubOn"></app-menusecondary>
         </div>
         <div class="col py-3">
         </div>

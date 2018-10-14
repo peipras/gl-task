@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { NavmenuModule } from './navmenu/navmenu.module';
+import { NavigationModule } from './navigation/navigation.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    NavmenuModule,
+    NavigationModule,
     HttpClientModule
   ],
   providers: [],

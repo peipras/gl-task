@@ -1,26 +1,23 @@
 import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
-import { NavMenuService, NavMenu } from '../nav-menu.service';
-import { NavsubComponent } from '../navsub/navsub.component';
+import { NavigationService, NavMenu } from '../navigation.service';
 import { getLocaleMonthNames } from '@angular/common';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-navside',
-  templateUrl: './navside.component.html',
-  styleUrls: ['./navside.component.scss']
+  selector: 'app-sidemenu',
+  templateUrl: './sidemenu.component.html',
+  styleUrls: ['./sidemenu.component.scss']
 })
-export class NavsideComponent implements OnInit, OnDestroy {
+export class SideMenuComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private previousItem: NavMenu = null;
   private istoggle = false;
   navItems: any;
 
-  navsubComponent: NavsubComponent;
-
   @Output() closed = new EventEmitter<[boolean, boolean]>();
 
-  constructor(private navMenuService: NavMenuService) {
-    this.subscription = this.navMenuService.curretMenuSubject$.subscribe((data) => {
+  constructor(private navigationService: NavigationService) {
+    this.subscription = this.navigationService.curretMenuSubject$.subscribe((data) => {
       this.navItems = data.menu.filter(x => data.main.includes(x.id));
     });
   }
@@ -38,7 +35,7 @@ export class NavsideComponent implements OnInit, OnDestroy {
         this.closed.emit([true, this.istoggle]);
     } else {
       this.closed.emit([true, true]);
-      this.navMenuService.setSelectedMenu(item);
+      this.navigationService.setSelectedMenu(item);
     }
     this.previousItem = item;
   }

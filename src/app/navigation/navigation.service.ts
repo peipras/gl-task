@@ -27,7 +27,7 @@ export interface NavMain {
 }
 
 @Injectable()
-export class NavMenuService {
+export class NavigationService {
   private menudata: NavMain;
 
   private curretMenuSubject = new Subject<NavMain>();

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavtopComponent } from './navtop.component';
+import { NavtopComponent } from './topmenu.component';
 
 describe('NavtopComponent', () => {
   let component: NavtopComponent;
