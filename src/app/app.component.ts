@@ -1,27 +1,9 @@
 import { Component } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { navigationAnimation } from './navigation/animations';
 
 @Component({
   selector: 'app-root',
-  animations: [
-    trigger('openClose', [
-      state('open', style({
-        visibility: 'visible',
-        transform: 'translateX(0%)',
-      })),
-      state('closed', style({
-        visibility: 'hidden',
-        transform: 'translateX(-100%)',
-      })),
-      transition('open => closed', [
-        animate('400ms'),
-      ]
-      ),
-      transition('closed => open', [
-        animate('400ms'),
-      ]),
-    ]),
-  ],
+  animations: [navigationAnimation],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
