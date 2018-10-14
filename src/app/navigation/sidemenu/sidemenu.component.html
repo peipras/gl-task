@@ -1,11 +1,11 @@
-<div class="nav flex-column flex-nowrap text-truncate navbar-light bg-white position-fixed pt-2 vh-100" [@openClose]="istoggle ? 'open' : 'closed'" [ngStyle]="{'width': '275px'}">
+<div class="nav flex-column flex-nowrap text-truncate navbar-light bg-white position-fixed pt-2 vh-100" [@openClose]="isMenuItemToggle ? 'open' : 'closed'" [ngStyle]="{'width': '275px'}">
     <a class="nav-link ml-2" href="#" (click)="onClose()"><i class="fas fa-times"></i></a>  
   <ul class="list-group">
-        <li class="nav-item" *ngFor="let navItem of navItems" (click)="toggleSubMenu(navItem)" [ngClass]="{'bg-light': selectedItem[navItem.id]}">
+        <li class="nav-item" *ngFor="let menuItem of menuItems" (click)="toggleSubMenu(menuItem)" [ngClass]="{'bg-light': selectedItem[menuItem.id]}">
             <a class="nav-link align-items-center d-flex" href="#">
-                <img src="/assets/images/{{navItem.icon}}" class="mr-3"/>
-                <span>{{selectedItem[navItem.id] !== true ? navItem.name : 'Back' }}</span>
-                <i class="fas ml-auto" [ngClass]="{'fa-caret-left': selectedItem[navItem.id], 'fa-caret-right': !selectedItem[navItem.id]}"></i>
+                <img src="/assets/images/{{menuItem.icon}}" class="mr-3"/>
+                <span>{{selectedItem[menuItem.id] !== true ? menuItem.name : 'Back' }}</span>
+                <i class="fas ml-auto" [ngClass]="{'fa-caret-left': selectedItem[menuItem.id], 'fa-caret-right': !selectedItem[menuItem.id]}"></i>
             </a>
         </li>
       </ul>

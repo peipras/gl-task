@@ -14,23 +14,24 @@ import { navigationAnimation } from '../animations';
 export class SideMenuComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private suscriptionState: Subscription;
-  istoggle = false;
-  navItems: any;
+  isMenuItemToggle = false;
+  menuItems: any;
   selectedItem = {};
 
   @Output() closed = new EventEmitter<[boolean, boolean]>();
 
   constructor(private navigationService: NavigationService) {
     this.subscription = this.navigationService.curretMenuSubject$.subscribe((data) => {
-      this.navItems = data.menu.filter(x => data.main.includes(x.id));
+      this.menuItems = data.menu.filter(x => data.main.includes(x.id));
     });
 
     this.suscriptionState = this.navigationService.menuStateubject$.subscribe((state) => {
-      this.istoggle = state[0];
+      this.isMenuItemToggle = state[0];
       if (state[2] !== null) {
         const isPrevActiveItem = this.selectedItem[state[2].id];
-        this.selectedItem = {};
-        this.selectedItem[state[2].id] = !isPrevActiveItem;
+
+        this.changeState(state[2], isPrevActiveItem);
+
       }
       if (!state[1]) {
         this.selectedItem = {};
@@ -45,15 +46,21 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
     this.suscriptionState.unsubscribe();
   }
+
+  private changeState(item: NavMenu, state: boolean) {
+    this.selectedItem = {};
+    this.selectedItem[item.id] = !state;
+  }
+
   toggleSubMenu(item: NavMenu) {
     const isPrevActiveItem = this.selectedItem[item.id];
-    this.istoggle = !this.istoggle;
+
+    this.isMenuItemToggle = !this.isMenuItemToggle;
     this.navigationService.menuState = [true, true, item];
     this.navigationService.setSelectedMenu(item);
-    this.selectedItem = {};
-    this.selectedItem[item.id] = !isPrevActiveItem;
-    this.closed.emit([true, this.selectedItem[item.id]]);
 
+    this.changeState(item, isPrevActiveItem);
+    this.closed.emit([true, this.selectedItem[item.id]]);
   }
 
   onClose() {
