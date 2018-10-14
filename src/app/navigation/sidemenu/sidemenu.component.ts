@@ -31,6 +31,9 @@ export class SideMenuComponent implements OnInit, OnDestroy {
         this.selectedItem = {};
         this.selectedItem[state[2].id] = !isPrevActiveItem;
       }
+      if(!state[1]){
+        this.selectedItem = {};
+      }
     })
   }
 

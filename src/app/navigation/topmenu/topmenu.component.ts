@@ -32,6 +32,10 @@ export class TopMenuComponent implements OnInit, OnDestroy {
         this.selectedIdtem = {};
         this.selectedIdtem[state[2].id] = !isPrevActiveItem;
       }
+
+      if(!state[1]){
+        this.selectedIdtem = {};
+      }
     })
   }
 
