@@ -29,10 +29,10 @@ export interface NavMain {
 @Injectable()
 export class NavigationService {
   private menudata: NavMain;
-  private _menuState : [boolean,boolean, NavMenu] = [false,false, null];
+  private _menuState: [boolean, boolean, NavMenu] = [false, false, null];
   private curretMenuSubject = new Subject<NavMain>();
   private selectedMenuSubject = new Subject<NavMenu>();
-  private menuStateubject = new Subject<[boolean,boolean,NavMenu]>();
+  private menuStateubject = new Subject<[boolean, boolean, NavMenu]>();
 
   curretMenuSubject$ = this.curretMenuSubject.asObservable();
   selectedMenuId$ = this.selectedMenuSubject.asObservable();
@@ -57,13 +57,13 @@ export class NavigationService {
     this.selectedMenuSubject.next(item);
   }
 
-  
 
-  get menuState() : [boolean,boolean, NavMenu] {
+
+  get menuState(): [boolean, boolean, NavMenu] {
         return this._menuState;
   }
-  
-  set menuState(state:[boolean,boolean, NavMenu]) {
+
+  set menuState(state: [boolean, boolean, NavMenu]) {
         this._menuState = state;
         this.menuStateubject.next(state);
   }

@@ -35,7 +35,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       if (!state[1]) {
         this.selectedItem = {};
       }
-    })
+    });
   }
 
   ngOnInit() {

@@ -13,8 +13,8 @@ export class MenuSecondaryComponent implements OnInit, OnDestroy {
   headerItem: string;
   private suscription: Subscription;
 
-  constructor(private NavigationService: NavigationService) {
-    this.suscription = this.NavigationService.selectedMenuId$.subscribe((item) => {
+  constructor(private navigationService: NavigationService) {
+    this.suscription = this.navigationService.selectedMenuId$.subscribe((item) => {
       this.loadSubmenu(item);
     });
   }
@@ -27,7 +27,7 @@ export class MenuSecondaryComponent implements OnInit, OnDestroy {
   }
 
   loadSubmenu(item: NavMenu) {
-    this.navItems = this.NavigationService.getSubMenu(item.id);
+    this.navItems = this.navigationService.getSubMenu(item.id);
     this.headerItem = item.name;
   }
 }

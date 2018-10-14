@@ -24,19 +24,18 @@ export class TopMenuComponent implements OnInit, OnDestroy {
       this.navItems = data.menu.filter(x => data.main.includes(x.id));
     });
 
-    this.suscriptionState = this.navigationService.menuStateubject$.subscribe((state)=>
-    {
+    this.suscriptionState = this.navigationService.menuStateubject$.subscribe((state) => {
       this.isToggle = state[0];
-      if(state[2]!== null){
+      if (state[2] !== null) {
         const isPrevActiveItem = this.selectedIdtem[state[2].id];
         this.selectedIdtem = {};
         this.selectedIdtem[state[2].id] = !isPrevActiveItem;
       }
 
-      if(!state[1]){
+      if (!state[1]) {
         this.selectedIdtem = {};
       }
-    })
+    });
   }
 
   ngOnInit() {

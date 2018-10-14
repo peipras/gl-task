@@ -1,6 +1,6 @@
 import { trigger, state, style, animate, transition, animation } from '@angular/animations';
 
-export const navigationAnimation = 
+export const navigationAnimation =
     trigger('openClose', [
       state('open', style({
         visibility: 'visible',
@@ -17,4 +17,4 @@ export const navigationAnimation =
       transition('closed => open', [
         animate('400ms'),
       ]),
-  ])
+  ]);
