@@ -11,8 +11,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-0 collapse show sidebar text-white">
-            <app-sidemenu (closed)="onClosed($event)" [hidden]="!isNavSideOn"></app-sidemenu>
-            <app-menusecondary [hidden]="!isNavSubOn"></app-menusecondary>
+            <app-sidemenu (closed)="onClosed($event)"></app-sidemenu>
+            <app-menusecondary style="left: 300px; position: absolute; width: 270px;" [@openClose]="isNavSubOn ? 'open' : 'closed'"></app-menusecondary>
         </div>
         <div class="col py-3">
         </div>

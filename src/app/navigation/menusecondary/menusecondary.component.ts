@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { NavigationService, NavMenu } from '../navigation.service';
 import { Subscription } from 'rxjs';
+
+import { NavigationService, NavMenu } from '../navigation.service';
 
 @Component({
   selector: 'app-menusecondary',
@@ -10,7 +11,6 @@ import { Subscription } from 'rxjs';
 export class MenuSecondaryComponent implements OnInit, OnDestroy {
   navItems: any;
   headerItem: string;
-  isToggle: boolean;
   private suscription: Subscription;
 
   constructor(private NavigationService: NavigationService) {

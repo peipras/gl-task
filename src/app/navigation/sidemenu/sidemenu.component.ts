@@ -1,13 +1,33 @@
 import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
-import { NavigationService, NavMenu } from '../navigation.service';
-import { getLocaleMonthNames } from '@angular/common';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Subscription } from 'rxjs';
-import { SubjectSubscriber } from 'rxjs/internal/Subject';
+
+import { NavigationService, NavMenu } from '../navigation.service';
+
 
 @Component({
   selector: 'app-sidemenu',
+  animations: [
+    trigger('openClose', [
+      state('open', style({
+        visibility: 'visible',
+        transform: 'translateX(0%)'
+      })),
+      state('closed', style({
+        visibility: 'hidden',
+        transform: 'translateX(-100%)',
+      })),
+      transition('open => closed', [
+        animate('400ms'),
+      ]
+      ),
+      transition('closed => open', [
+        animate('400ms'),
+      ]),
+    ]),
+  ],
   templateUrl: './sidemenu.component.html',
-  styleUrls: ['./sidemenu.component.scss']
+  styleUrls: ['./sidemenu.component.scss'],
 })
 export class SideMenuComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
@@ -23,15 +43,14 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       this.navItems = data.menu.filter(x => data.main.includes(x.id));
     });
 
-    this.suscriptionState = this.navigationService.menuStateubject$.subscribe((state)=>
-    {
+    this.suscriptionState = this.navigationService.menuStateubject$.subscribe((state) => {
       this.istoggle = state[0];
-      if(state[2]!== null){
+      if (state[2] !== null) {
         const isPrevActiveItem = this.selectedItem[state[2].id];
         this.selectedItem = {};
         this.selectedItem[state[2].id] = !isPrevActiveItem;
       }
-      if(!state[1]){
+      if (!state[1]) {
         this.selectedItem = {};
       }
     })
@@ -52,7 +71,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     this.selectedItem = {};
     this.selectedItem[item.id] = !isPrevActiveItem;
     this.closed.emit([true, this.selectedItem[item.id]]);
- 
+
   }
 
   onClose() {

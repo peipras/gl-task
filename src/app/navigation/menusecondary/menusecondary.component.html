@@ -1,9 +1,9 @@
-<div class="nav flex-column flex-nowrap text-truncate navbar-light bg-light position-fixed pt-2 vh-100" style="left: 300px; position: absolute; width: 270px;">
+<div class="nav flex-column flex-nowrap text-truncate navbar-light bg-light position-fixed pt-2 vh-100">
   <p class="ml-3 h5 text-primary">{{headerItem}}</p>
   <ul class="list-group">
     <li class="nav-item" *ngFor="let navItem of navItems">
       <a class="nav-link align-items-center" href="#">
-        <img src="/assets/images/{{navItem.thumb}}" class="rounded mr-2" />
+        <img src="/assets/images/{{navItem.thumb ? navItem.thumb : 'image-not-found.png'}}" class="rounded mr-2" />
         <span>{{navItem.name}}</span>
       </a>
     </li>
