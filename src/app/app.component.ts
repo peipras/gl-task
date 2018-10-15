@@ -5,7 +5,6 @@ import { navigationAnimation } from './navigation/animations';
   selector: 'app-root',
   animations: [navigationAnimation],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   isNavSideOn: boolean;

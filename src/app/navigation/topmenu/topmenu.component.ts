@@ -1,25 +1,23 @@
 import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { NavigationService, NavMenu } from '../navigation.service';
-import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-topmenu',
   templateUrl: './topmenu.component.html',
-  styleUrls: ['./topmenu.component.scss']
 })
 export class TopMenuComponent implements OnInit, OnDestroy {
-  navItems: any;
+  navItems: NavMenu[];
   isToggle = false;
   selectedItem = {};
 
   @Output() toggled = new EventEmitter<[boolean, boolean]>();
   private suscription: Subscription;
   private suscriptionState: Subscription;
+  private subscriptionMainMenu : Subscription;
 
-  constructor(
-    private navigationService: NavigationService,
-
-  ) {
+  constructor(private navigationService: NavigationService) {
     this.suscription = this.navigationService.curretMenuSubject$.subscribe((data) => {
       this.navItems = data.menu.filter(x => data.main.includes(x.id));
     });
@@ -43,12 +41,13 @@ export class TopMenuComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.navigationService.getMainMenu('./assets/data/menu.json').subscribe();
+    this.subscriptionMainMenu = this.navigationService.getMainMenu().subscribe();
   }
 
-  ngOnDestroy (): void {
+  ngOnDestroy() {
     this.suscription.unsubscribe();
     this.suscriptionState.unsubscribe();
+    this.subscriptionMainMenu.unsubscribe();
   }
 
   onToggle() {

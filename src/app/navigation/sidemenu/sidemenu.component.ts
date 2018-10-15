@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { NavigationService, NavMenu } from '../navigation.service';
@@ -11,11 +11,12 @@ import { navigationAnimation } from '../animations';
   templateUrl: './sidemenu.component.html',
   styleUrls: ['./sidemenu.component.scss'],
 })
-export class SideMenuComponent implements OnInit, OnDestroy {
+export class SideMenuComponent implements OnDestroy {
   private subscription: Subscription;
   private suscriptionState: Subscription;
+
   isMenuItemToggle = false;
-  menuItems: any;
+  menuItems: NavMenu[];
   selectedItem = {};
 
   @Output() closed = new EventEmitter<[boolean, boolean]>();
@@ -37,9 +38,6 @@ export class SideMenuComponent implements OnInit, OnDestroy {
         this.selectedItem = {};
       }
     });
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy() {

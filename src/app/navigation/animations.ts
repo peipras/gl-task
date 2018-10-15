@@ -1,4 +1,4 @@
-import { trigger, state, style, animate, transition, animation } from '@angular/animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 export const navigationAnimation =
     trigger('openClose', [

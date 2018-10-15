@@ -1,14 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
-// Required
-
-
 $theme-colors: (
-  "primary": #0074d9
+  "primary": #004a8b
 );
 
 @import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
 @import "node_modules/bootstrap/scss/mixins";
+@import "node_modules/bootstrap/scss/bootstrap";
 
 body {
     height: 100vh;

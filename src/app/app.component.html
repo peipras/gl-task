@@ -1,7 +1,6 @@
 <div class="container-fluid fixed-top bg-primary">
     <div class="row">
-        <div class="col-sm-3 col-0 collapse show sidebar">
-            <!-- spacer col -->
+        <div class="col-sm-3">
         </div>
         <div class="col px-3">
             <app-topmenu (toggled)="onToggled($event)"></app-topmenu>
@@ -10,11 +9,9 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-0 collapse show sidebar text-white">
+        <div class="col-sm-3">
             <app-sidemenu (closed)="onClosed($event)"></app-sidemenu>
-            <app-menusecondary style="left: 300px; position: absolute; width: 270px;" [@openClose]="isNavSubOn ? 'open' : 'closed'"></app-menusecondary>
-        </div>
-        <div class="col py-3">
+            <app-menusecondary [@openClose]="isNavSubOn ? 'open' : 'closed'"></app-menusecondary>
         </div>
     </div>
 </div>

@@ -40,8 +40,8 @@ export class NavigationService {
 
   constructor(private http: HttpClient) { }
 
-  public getMainMenu(path: string) {
-    return this.http.get<NavMain>(path).pipe(
+  public getMainMenu() {
+    return this.http.get<NavMain>('./assets/data/menu.json').pipe(
       map(res => {
         this.menudata = res;
         this.curretMenuSubject.next(res);

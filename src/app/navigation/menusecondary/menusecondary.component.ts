@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { NavigationService, NavMenu, NavSub } from '../navigation.service';
+import { NavigationService, NavSub } from '../navigation.service';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { NavigationService, NavMenu, NavSub } from '../navigation.service';
   templateUrl: './menusecondary.component.html',
   styleUrls: ['./menusecondary.component.scss']
 })
-export class MenuSecondaryComponent implements OnInit, OnDestroy {
+export class MenuSecondaryComponent implements OnDestroy {
   private suscription: Subscription;
 
   menuSubItems: NavSub[];
@@ -20,9 +20,6 @@ export class MenuSecondaryComponent implements OnInit, OnDestroy {
       this.menuSubItems = this.navigationService.getSubMenu(item.id);
       this.menuSubHeader = item.name;
     });
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy() {
